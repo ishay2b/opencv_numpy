@@ -1,0 +1,10 @@
+Create a shared object library and call it from python:
+rm -rf build
+mkdir build
+cd build
+cmake ..
+make
+
+
+cd ..
+python use_dll.py

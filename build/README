@@ -1,0 +1,5 @@
+from build/ folder run
+cmake ..
+make
+
+.SO will be places here.
