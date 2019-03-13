@@ -2,4 +2,4 @@ from build/ folder run
 cmake ..
 make
 
-.SO will be places here.
+.SO will be placed here.
