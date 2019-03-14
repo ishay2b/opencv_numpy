@@ -1,6 +1,6 @@
 # Using Open CV C/C++ code in C code context on numpy python arrays:
 
-## This is an example showcasing:
+## This example is showcasing:
 1. Python allocating numpy array.
 2. Python calls C code to operate on the array.
 3. C code wraps the array as an OpenCV Matrix, and operates on the array (here it multiples by 2).
