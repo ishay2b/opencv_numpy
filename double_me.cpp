@@ -1,6 +1,5 @@
 #include <opencv2/opencv.hpp>
 
-using namespace std;
 using namespace cv;
 
 #ifndef DL_EXPORT  // Windows Oooo Windows, If only you were BSD.

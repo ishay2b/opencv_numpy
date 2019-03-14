@@ -22,10 +22,61 @@ The other second “best” option is to add C code python bindings, wrap and un
 ## Can I see this magic in action?
 Sure, here is how, first let's compile the C code into a shared object.
 
+```
 cd build
 cmake ..
 make
+```
 
-## Now let’s use it from
+A new shared library named double_me.so is created in the build folder.
+Notice OSX adds .dylib extension.
+
+## Now let’s use it from Python:
+```
 cd ..
 python use_dll.py
+```
+
+
+## Result
+```
+Original array:
+ [[1. 2. 3.]
+ [4. 5. 6.]]
+Same Array after c code:
+ [[ 2.  4.  6.]
+ [ 8. 10. 12.]]
+```
+
+## Main python function
+
+```python
+import numpy as np
+import ctypes
+
+dll_path = 'build/libdouble_me.so.dylib'  # remove .dylib if not OSX
+double_me_lib = ctypes.cdll.LoadLibrary(dll_path)  # Load compiled library.
+
+# Pre allocate a numpy array.
+my_array = np.array([[1, 2, 3], [4, 5, 6]], dtype=np.float32)  # Same as CV_32F
+
+# Flatten array to C type array.
+my_array = np.ascontiguousarray(my_array)
+
+print("Original array:\n", my_array)
+
+# Cast to c type pointer and 2 longs W/H and call C code.
+double_me_lib.double_me(my_array.ctypes.data_as(ctypes.c_void_p), ctypes.c_long(2), ctypes.c_long(3))
+
+# Operations are inplace there for we can see the result in same array.
+print("Same Array after c code:\n", my_array)
+
+```
+
+## Main C code
+```C
+DL_EXPORT(void) double_me(void *buffer, const int W, const int H){
+    Mat mat(Size(W, H), CV_32F, buffer);// Wrap with opencv matrix. Notice assume np.float32. watch out, no type checks.
+    mat *= 2 ; // Make an actual inplace action, no need to return a value.
+}
+```
