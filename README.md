@@ -1,4 +1,4 @@
-# Using Open CV C/C++ code in C code conexet on numpy python arrays:
+# Using Open CV C/C++ code in C code context on numpy python arrays:
 
 ## This is an example showcasing:
 1. Python allocating numpy array.
