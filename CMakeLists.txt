@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.5)
 project(opencv_numpy)
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++1y -pthread -Wall -fpermissive -Wno-write-strings")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3 -std=c++1y -pthread -Wall -fpermissive -Wno-write-strings")
 
 set(CMAKE_CXX_STANDARD 14)
 find_package(OpenCV REQUIRED)
