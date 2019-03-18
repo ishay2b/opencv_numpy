@@ -89,3 +89,6 @@ DL_EXPORT(void) double_me(void *buffer, const int W, const int H){
     mat *= 2 ; // Make an actual inplace action, no need to return a value.
 }
 ```
+
+## Runtime compare for 100 iterations of numpy/opencv
+![Alt Runtime (ms)](runtime_results.png?raw=true "Runtime (ms)")
