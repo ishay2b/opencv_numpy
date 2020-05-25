@@ -16,7 +16,7 @@
 
 
 ## What is the nearest alternative?
-The other second “best” option is to add C code python bindings, wrap and unwrap objects, handle memory allocations and deallocations. Curiues minds can find more details in the python official example: https://docs.python.org/3/extending/extending.html
+pybind11 was recomnded by many: https://github.com/pybind/pybind11
 
 
 ## Can I see this magic in action?
