@@ -16,7 +16,7 @@
 
 
 ## What is the nearest alternative?
-pybind11 was recomnded by many: https://github.com/pybind/pybind11
+pybind11 was recommended by many: https://github.com/pybind/pybind11
 
 
 ## Can I see this magic in action?
