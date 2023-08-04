@@ -1,14 +1,15 @@
 # Using Open CV C/C++ code in C code context on numpy python arrays:
 
-## This example is showcasing:
-1. Python allocating numpy array.
-2. Python calls C code to operate on the array.
-3. C code wraps the array as an OpenCV Matrix, and operates on the array (here it multiples by 2).
-4. Since the operation is in place and operated on the python allocated array, python code gets the alg result. e.g. The same array multiplied by 2.
+## This example showcases:
+
+* Python allocating NumPy array.
+* Python calling C code to operate on the array.
+* C code wrapping the array as an OpenCV Matrix, and operating on the array (here it multiplies by 2).
+* Since the operation is in-place and operated on the Python allocated array, the Python code gets the algorithm result. For example, the same array multiplied by 2.
 
 ## Why like this?
 1. No need for python/numpy binding and coding on the C code side.
-2. Therefor no code changes to algorithms already written in C code.
+2. Therefor no code changes to algorithms that are already written in C code.
 3. Easiest way to test existing algorithms written in C using python.
 4. No need to allocate memory on C code since allocations are all ready done on python side.
 5. Once the python numpy array is contiguous, no overhead to C calls.
@@ -29,7 +30,8 @@ make
 ```
 
 A new shared library named double_me.so is created in the build folder.
-Notice OSX adds .dylib extension.
+
+**Note:** OSX adds the `.dylib` extension.
 
 ## Now let’s use it from Python:
 ```
@@ -74,10 +76,10 @@ P = my_array.ctypes.data_as(c_void_p)  # The C pointer
 # The C function header is:
 # void double_me(void *buffer, const int W, const int H);
 
-# Lets call the inplace C function:
+# Lets call the in-place C function:
 double_me_lib.double_me(P, W, H)
 
-# Operations are inplace there for we can see the result in same array.
+# Operations are in-place there for we can see the result in same array.
 print("Same Array after c code:\n", my_array)
 
 ```
@@ -86,7 +88,7 @@ print("Same Array after c code:\n", my_array)
 ```C
 DL_EXPORT(void) double_me(void *buffer, const int W, const int H){
     Mat mat(Size(W, H), CV_32F, buffer);// Wrap with opencv matrix. Notice assume np.float32. watch out, no type checks.
-    mat *= 2 ; // Make an actual inplace action, no need to return a value.
+    mat *= 2 ; // Make an actual in-place action, no need to return a value.
 }
 ```
 

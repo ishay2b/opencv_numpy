@@ -12,7 +12,7 @@ extern "C"{
 
      DL_EXPORT(void) double_me(void *buffer, const int W, const int H){
         Mat mat(Size(W, H), CV_32F, buffer);// Wrap with opencv matrix
-        mat *= 2.0f ; // Make an actual inplace action, no need to return a value.
+        mat *= 2.0f ; // Make an actual in-place action, no need to return a value.
     }
 
 }// Extern

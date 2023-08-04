@@ -14,18 +14,18 @@ x = np.ascontiguousarray(x, dtype=np.float32)  # Same as CV_32F
 print("Original array:\n", x)
 
 
-# Cast to c type pointer and 2 longs W/H.
-H = c_long(x.shape[0])
-W = c_long(x.shape[1])
-P = x.ctypes.data_as(c_void_p)  # The C pointer
-
 # The C function header is:
 # void double_me(void *buffer, const int W, const int H);
+# So lets convert the pyth
+# Cast to c type pointer and 2 longs W/H.
+H, W = c_long(x.shape[0]), c_long(x.shape[1])
+P = x.ctypes.data_as(c_void_p)  # The C pointer
 
-# Lets call the inplace C function:
+
+# Lets call the in-place C function:
 double_me_lib.double_me(P, W, H)
 
-# Operations are inplace there for we can see the result in same array.
+# Operations are in-place, so the result is stored in the original array.
 print("Same Array after c code:\n", x)
 
 # Now Let's time it
